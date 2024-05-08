@@ -9,7 +9,7 @@ This is a Demo Web-App for OC training
 1. Clone this repository:
 
    ```bash
-   git clone [https://github.com/yourusername/your-repo.git](https://github.com/Oc-training/crew-ai-webapp)
+   git clone https://github.com/Oc-training/crew-ai-webapp
    ```
 
 2. Navigate into the project directory:
