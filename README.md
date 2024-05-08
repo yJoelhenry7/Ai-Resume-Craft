@@ -43,7 +43,9 @@ This is a Demo Web-App for OC training
 
 ## How It Works
 
-- **main.py**: This file initializes the FastAPI application, mounts the static directory to serve static files, and configures Jinja2Templates for rendering HTML templates. It defines a single route at `/` that renders the `home.html` template, passing a message variable to the template context.
+- **main.py**: This file initializes the FastAPI application and mounts the static directory to serve static files. It includes routes from the router module using app.include_router().
 - **templates/home.html**: This HTML template file is rendered when accessing the root URL (`/`). It receives the message variable from the route and displays it on the webpage.
+- **static/**: This directory is used to store static files like CSS, JavaScript, or images. The "/static" endpoint is mounted to serve files from this directory.
+- **routes/router.py**: This module defines additional routes using FastAPI routers. These routers can be organized based on logical grouping or feature sets.
 
 ---
