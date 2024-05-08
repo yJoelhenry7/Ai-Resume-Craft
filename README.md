@@ -39,6 +39,7 @@ This is a Demo Web-App for OC training
 - **main.py**: Contains the FastAPI application code.
 - **static/**: Directory to store static files (e.g., CSS, JavaScript, images).
 - **templates/**: Directory to store Jinja2 HTML templates.
+- **routes/router.py** : Contains route definitions organized using FastAPI routers.
 
 ## How It Works
 
