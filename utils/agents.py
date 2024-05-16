@@ -20,13 +20,12 @@ class Agents():
     #         verbose=True,
     #         tools=tools.convert_md_tool("frames/resume.pdf"),
     #     )
-    def extract_headings_agent(self):
-        # tools = Tools()
+    def extract_headings_agent(self,format):
         return Agent(
-            role="Heading Extraction Agent",
-            goal="Extract headings from the provided content",
-            backstory=dedent(f"""\
-            Extracts and returns only the headings from the provided markdown content.
+            role='Main Heading Extraction Agent',
+            goal=f'Extract only the main headings for {format} from the provided content ',
+            backstory=dedent("""
+                Extracts and returns only the main headings (level 1 headings) from the provided markdown content.
             """),
             verbose=True,
             llm=llm,

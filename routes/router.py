@@ -6,6 +6,7 @@ from fastapi.templating import Jinja2Templates
 from crewai import Crew, Process
 from utils.agents import Agents
 from utils.tasks import Tasks
+from utils.helpers import Helpers
 # from utils.tools import Tools
 from langchain_openai import ChatOpenAI
 import os
@@ -19,21 +20,16 @@ templates = Jinja2Templates(directory="templates")
 
 @router.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    message = "Hello"
-    # tools = Tools()
-    # res = tools.convert_md_tool("frames/resume.pdf")
-    # Define the file path
-    file_path = 'frames/resume.md'
-
-    # Read the file and store its contents in a variable
-    with open(file_path, 'r', encoding='utf-8') as file:
-        file_contents = file.read()
     
+    pdf_file_path = 'frames/resume.pdf'
+    helper = Helpers()
+    file_contents = helper.convert_pdf_to_md(pdf_file_path)
+
     agent = Agents()
-    headings_agent = agent.extract_headings_agent()
+    headings_agent = agent.extract_headings_agent('resume')
 
     task = Tasks()
-    headings_task = task.extract_headings_task(headings_agent, file_contents)
+    headings_task = task.extract_headings_task(headings_agent, file_contents,'resume')
 
     crew = Crew(
     agents=[headings_agent],
