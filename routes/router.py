@@ -7,8 +7,11 @@ from crewai import Crew, Process
 from utils.agents import Agents
 from utils.tasks import Tasks
 # from utils.tools import Tools
-from langchain_community.llms import Ollama
-ollama_openhermes = Ollama(model="llama2")
+from langchain_openai import ChatOpenAI
+import os
+model = os.environ.get("OPENAI_MODEL_NAME")
+base_url = os.environ.get("OPENAI_API_BASE")
+llm = ChatOpenAI( model = model, base_url = base_url)
 
 
 router = APIRouter()
@@ -20,7 +23,7 @@ async def home(request: Request):
     # tools = Tools()
     # res = tools.convert_md_tool("frames/resume.pdf")
     # Define the file path
-    file_path = 'White.md'
+    file_path = 'frames/resume.md'
 
     # Read the file and store its contents in a variable
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -35,7 +38,7 @@ async def home(request: Request):
     crew = Crew(
     agents=[headings_agent],
     tasks=[headings_task],
-    llm=ollama_openhermes,
+    llm=llm,
     verbose=2
     )
 

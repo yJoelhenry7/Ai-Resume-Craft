@@ -1,10 +1,15 @@
+import os 
 from textwrap import dedent
 from crewai import Agent
-from langchain_community.llms import Ollama
-
 # from tools import Tools
+from langchain_openai import ChatOpenAI
 
-ollama_openhermes = Ollama(model="llama2")
+model = os.environ.get("OPENAI_MODEL_NAME")
+base_url = os.environ.get("OPENAI_API_BASE")
+llm = ChatOpenAI( model = model, base_url = base_url)
+
+
+
 class Agents():
     # def extract_text_agent(self):
     #     tools = Tools()
@@ -22,7 +27,7 @@ class Agents():
             goal="Extract headings from the provided content",
             backstory="Extracts and returns only the headings from the provided markdown content.",
             verbose=True,
-            llm=ollama_openhermes,
+            llm=llm,
             # tools=tools.convert_md_tool("frames/resume.pdf"),
         )
     
