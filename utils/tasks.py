@@ -3,13 +3,11 @@ from crewai import Task
 
 
 class Tasks():
-    def data_create_task(self,agent):
+    def extract_headings_task(self,agent,output):
         return Task(
-            description = dedent(f"""\
-            """),
-            expected_output=dedent(f"""\
-            """),
-            agent=agent
+            description =f"Extract headings from the provided markdown content: {output}",
+            expected_output='Extracted headings in Markdown format',
+            agent=agent,
         )
     
     def resume_create_task(self,agent):
