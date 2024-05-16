@@ -5,8 +5,12 @@ from crewai import Task
 class Tasks():
     def extract_headings_task(self,agent,output):
         return Task(
-            description =f"Extract headings from the provided markdown content: {output}",
-            expected_output='Extracted headings in Markdown format',
+            description =dedent(f"""\
+            Extract headings from the provided markdown content: {output}
+            """),
+            expected_output=dedent(f"""\ 
+            Extracted headings in Markdown format'
+            """),
             agent=agent,
         )
     
