@@ -45,8 +45,6 @@ async def home(request: Request):
     # Get the Crew to work
     result = crew.kickoff()
 
-    print("######################")
-    print(result)
-    # Print the contents of the file
-    # print(file_contents)
+    # print("######################")
+    # print(result)
     return templates.TemplateResponse("home.html", { "request" : request,"message":result })

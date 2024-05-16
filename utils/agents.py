@@ -25,7 +25,9 @@ class Agents():
         return Agent(
             role="Heading Extraction Agent",
             goal="Extract headings from the provided content",
-            backstory="Extracts and returns only the headings from the provided markdown content.",
+            backstory=dedent(f"""\
+            Extracts and returns only the headings from the provided markdown content.
+            """),
             verbose=True,
             llm=llm,
             # tools=tools.convert_md_tool("frames/resume.pdf"),
