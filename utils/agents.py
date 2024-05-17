@@ -32,13 +32,12 @@ class Agents():
             # tools=tools.convert_md_tool("frames/resume.pdf"),
         )
     
-    def resume_create_agent(self):
+    def segregate_content_agent(self):
         return Agent(
-            role="",
-            goal="",
-            backstory=dedent(f"""\
-            """),
+            role='Text Segregation Agent',
+            goal='Segregate text into categories',
+            backstory='Organizes text into predefined categories based on its content.',
             verbose=True,
-            tools=[],
+            llm=llm,
         )
     

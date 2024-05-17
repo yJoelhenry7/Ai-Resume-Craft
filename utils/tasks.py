@@ -11,17 +11,15 @@ class Tasks():
             expected_output=dedent("""
                     Extracted main headings in Markdown format
                 """),
+            async_execution=True,
             agent=agent,
         )
     
-    def resume_create_task(self,agent):
+    def segregate_content_task(self,agent,text):
         return Task(
-            description=dedent(f"""
-                Segregate text from the provided PDF content into categories
-            """),
-            expected_output=dedent("""
-                Text segregated into categories
-            """),
+            description=f'Segregate text into categories from the provided markdown content: {text}',
+            expected_output='Text segregated into categories',
+            async_execution=False,
             agent=agent,
         )
     
