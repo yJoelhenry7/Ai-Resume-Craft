@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- link to css file -->
-    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    
-    
     {% if message == '' %}
-      
-    <form action="/submit" method="post" enctype="multipart/form-data">
-        <div class="documentTypeDiv">          
-            <div>
-                <input type="radio" id="resume" name="documentType" value="resume" required>
-                <label for="resume">Resume</label>
+    <div class="container">
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            <h3>Choose Your Template</h3>
+            <div class="documentTypeDiv">          
+                <div class="frameDiv">
+                    <input type="radio" id="resume" name="documentType" value="resume" required>
+                    <label for="resume">Resume</label>
+                </div>
+                <div class="frameDiv">
+                    <input type="radio" id="cv" name="documentType" value="cv" required>
+                    <label for="cv">CV</label>
+                </div>
+            </div>
+            <div class="uploadDiv">
+                <h3 for="fileUpload">Upload your document:</h3>
+                <input type="file" id="fileUpload" name="fileUpload" accept=".doc,.docx,.pdf" required>
             </div>
             <div>
-                <input type="radio" id="cv" name="documentType" value="cv" required>
-                <label for="cv">CV</label>
+                <button class="button" type="submit">Submit</button>
             </div>
-        </div>
-        <div>
-            <label for="fileUpload">Upload your document:</label>
-            <input type="file" id="fileUpload" name="fileUpload" accept=".doc,.docx,.pdf" required>
-        </div>
-        <div>
-            <button type="submit">Submit</button>
-        </div>
-    </form>
+        </form>
+    </div>
     {% else %}
         <h1> {{message}}</h1>
     {% endif %}

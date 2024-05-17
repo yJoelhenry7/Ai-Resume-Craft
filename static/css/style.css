@@ -1,3 +1,32 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+}
+.container form{
+    padding: 3rem 3rem;
+    border: 2px solid black;
+    border-radius: 15px;
+}
 .documentTypeDiv{
     display: flex;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+.frameDiv{
+    border: 2px solid black;
+    height: 12rem;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+}
+.uploadDiv{
+    margin: 2rem 0;
+}
+
+.button{
+    padding: 10px 30px;
+    font-size: 16px;
 }
