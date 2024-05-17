@@ -5,10 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- link to css file -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1> {{message}} ,Welcome</h1>
+    
+    
+    {% if message == '' %}
+      
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <div class="documentTypeDiv">          
+            <div>
+                <input type="radio" id="resume" name="documentType" value="resume" required>
+                <label for="resume">Resume</label>
+            </div>
+            <div>
+                <input type="radio" id="cv" name="documentType" value="cv" required>
+                <label for="cv">CV</label>
+            </div>
+        </div>
+        <div>
+            <label for="fileUpload">Upload your document:</label>
+            <input type="file" id="fileUpload" name="fileUpload" accept=".doc,.docx,.pdf" required>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    {% else %}
+        <h1> {{message}}</h1>
+    {% endif %}
     <!-- script tag for script.js -->
     <script src="/static/js/script.js"></script>
 </body>

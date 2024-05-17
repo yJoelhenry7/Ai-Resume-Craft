@@ -1,4 +1,8 @@
 import pdfplumber
+from PyPDF2 import PdfReader
+import docx2txt
+from fastapi import HTTPException
+import io
 
 class Helpers():
     def convert_pdf_to_md(self,filepath):
@@ -38,3 +42,18 @@ class Helpers():
             file_contents = file.read()
         return file_contents
 
+
+    def extract_text_from_file(self,content, content_type):
+        if content_type == "application/pdf":
+            text = ""
+            with io.BytesIO(content) as pdf_file:
+                reader = PdfReader(pdf_file)
+                for page in reader.pages:
+                    text += page.extract_text()
+        elif content_type in ["application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]:
+            with io.BytesIO(content) as docx_file:
+                text = docx2txt.process(docx_file)
+        else:
+            raise HTTPException(status_code=400, detail="Unsupported file type")
+        
+        return text

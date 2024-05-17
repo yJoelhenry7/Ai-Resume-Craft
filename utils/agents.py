@@ -24,11 +24,12 @@ class Agents():
         return Agent(
             role='Main Heading Extraction Agent',
             goal=f'Extract only the main headings for {format} from the provided content ',
-            backstory=dedent("""
-                Extracts and returns only the main headings (level 1 headings) from the provided markdown content.
+            backstory=dedent(f"""
+                Extracts and returns only the main headings (level 1 headings) for {format} from the provided markdown content.
             """),
             verbose=True,
             llm=llm,
+            allow_delegation=False
             # tools=tools.convert_md_tool("frames/resume.pdf"),
         )
     
@@ -39,5 +40,6 @@ class Agents():
             backstory='Organizes text into predefined categories based on its content.',
             verbose=True,
             llm=llm,
+            allow_delegation=False
         )
     
