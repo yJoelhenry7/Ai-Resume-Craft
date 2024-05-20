@@ -11,15 +11,7 @@ llm = ChatOpenAI( model = model, base_url = base_url)
 
 
 class Agents():
-    # def extract_text_agent(self):
-    #     tools = Tools()
-    #     return Agent(
-    #         role="Text Extraction Agent",
-    #         goal="Extract Text from the provided file",
-    #         backstory="Extracts and returns only the text from the provided file.",
-    #         verbose=True,
-    #         tools=tools.convert_md_tool("frames/resume.pdf"),
-    #     )
+
     def extract_headings_agent(self,format):
         return Agent(
             role='Main Heading Extraction Agent',
@@ -30,14 +22,13 @@ class Agents():
             verbose=True,
             llm=llm,
             allow_delegation=False
-            # tools=tools.convert_md_tool("frames/resume.pdf"),
         )
     
     def segregate_content_agent(self):
         return Agent(
             role='Text Segregation Agent',
             goal='Segregate text into categories',
-            backstory='Organizes text into predefined categories based on its content.',
+            backstory='Organizes text into predefined categories in markdown format based on its content.',
             verbose=True,
             llm=llm,
             allow_delegation=False

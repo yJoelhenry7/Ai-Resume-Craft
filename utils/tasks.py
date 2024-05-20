@@ -17,8 +17,12 @@ class Tasks():
     
     def segregate_content_task(self,agent,text):
         return Task(
-            description=f'Segregate text into categories from the provided markdown content: {text}',
-            expected_output='Text segregated into categories',
+            description=dedent(f"""
+                    Segregate text into categories from the provided markdown content: {text}
+                """),
+            expected_output=dedent("""
+                    Text segregated into categories in markdown format
+                """),
             async_execution=False,
             agent=agent,
         )

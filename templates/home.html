@@ -18,8 +18,8 @@
                     <label for="resume">Resume</label>
                 </div>
                 <div class="frameDiv">
-                    <input type="radio" id="cv" name="documentType" value="cv" required>
-                    <label for="cv">CV</label>
+                    <input type="radio" id="coverletter" name="documentType" value="coverletter" required>
+                    <label for="coverletter">Cover Letter</label>
                 </div>
             </div>
             <div class="uploadDiv">
@@ -32,7 +32,7 @@
         </form>
     </div>
     {% else %}
-        <h1> {{message}}</h1>
+        <pre> {{message}}</pre>
     {% endif %}
     <!-- script tag for script.js -->
     <script src="/static/js/script.js"></script>
