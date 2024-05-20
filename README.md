@@ -29,7 +29,7 @@ This is a Demo Web-App for OC training
 1. Run the FastAPI application:
 
    ```bash
-   uvicorn main:app --reload
+   fastapi dev main.py
    ```
 
 2. Access the application in your web browser at [http://localhost:8000](http://localhost:8000).
@@ -40,6 +40,8 @@ This is a Demo Web-App for OC training
 - **static/**: Directory to store static files (e.g., CSS, JavaScript, images).
 - **templates/**: Directory to store Jinja2 HTML templates.
 - **routes/router.py** : Contains route definitions organized using FastAPI routers.
+- **utils** : Contains Different files used for creating agents,tasks and helpers.
+- **frames** : Contains Different Frames available.
 
 ## How It Works
 
