@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User selection</title>
+    <!-- link to css file -->
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% if message == '' %}
+    <div class="container">
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            <h3>Choose Your Template</h3>
+            <div class="documentTypeDiv">          
+                <div class="frameDiv">
+                    <input type="radio" id="resume" name="documentType" value="resume" required>
+                    <label for="resume">Resume</label>
+                </div>
+                <div class="frameDiv">
+                    <input type="radio" id="coverletter" name="documentType" value="coverletter" required>
+                    <label for="coverletter">Cover Letter</label>
+                </div>
+            </div>
+            <div class="uploadDiv">
+                <h3 for="fileUpload">Upload your document:</h3>
+                <input type="file" id="fileUpload" name="fileUpload" accept=".doc,.docx,.pdf" required>
+            </div>
+            <div>
+                <button class="button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+        <pre> {{message}}</pre>
+    {% endif %}
+    <!-- script tag for script.js -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -27,6 +27,11 @@ async def home(request: Request):
     
     return templates.TemplateResponse("home.html", { "request" : request,"message":"" })
 
+@router.get("/user_selection", response_class=HTMLResponse)
+async def user_selection(request: Request):
+    
+    return templates.TemplateResponse("user_selection.html", { "request" : request,"message":"" })
+
 
 @router.post("/submit", response_class=HTMLResponse)
 async def submit(request: Request, documentType: str = Form(...), fileUpload: UploadFile = File(...)):
