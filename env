@@ -1,4 +1,5 @@
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@localhost/crewdb"
+SQLALCHEMY_DATABASE_URL =  "postgresql://<username>:<password>@<host-name>/<your-db-name>"
 OPENAI_API_BASE='http://localhost:11434/v1'
 OPENAI_MODEL_NAME='llama3'  
 OPENAI_API_KEY=''
+
