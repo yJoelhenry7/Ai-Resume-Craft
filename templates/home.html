@@ -4,8 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="container-home">
+        <div class="container-home-div"  id="user-login-title-div">
+            <h1>Please Login to Access the App</h1>
+        </div>
+        <div class="container-home-div" id="user-selection-div" style="display: none;">
+            <h1>Welcome </h1>
+            <a href="/user_selection"><button>Link to User Selection</button></a>
+        </div>
+        <div id="login-div">
+            <a href="/signin"><button>Sign In</button></a>
+            <a href="/signup"><button>Sign Up</button></a>
+        </div>
+        <div id="logout-div" style="display: none;">
+            <button id="logout-button">Logout</button>
+        </div>
+    </div>
+    <script>
+           
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+
+            for(let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+
+                if(name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+
+            return null;
+        }
+     
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = getCookie('access_token');
+            if (token) {
+                document.getElementById('user-selection-div').style.display = 'block';
+                document.getElementById('logout-div').style.display = 'block';
+                document.getElementById('user-login-title-div').style.display = 'none';
+                document.getElementById('login-div').style.display = 'none';
+            }
+        });
+  
+        function handleLogout() {
+            name = 'access_token'
+            document.cookie =  `${name}=;`
+            alert('Logged out successfully!')
+            window.location.href = '/';
+        }
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', handleLogout);
+    </script>
+    <script src="{{ url_for('static', path='js/script.js') }}"></script>
 </body>
 </html>

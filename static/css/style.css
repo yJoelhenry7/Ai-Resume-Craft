@@ -1,3 +1,13 @@
+.container-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 96vh;
+}
+.container-home-div{
+  margin: 1.5rem 1rem;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -29,4 +39,11 @@
 .button{
     padding: 10px 30px;
     font-size: 16px;
+}
+#signin-form,#signup-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
