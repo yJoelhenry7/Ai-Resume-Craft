@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from config.database import engine, Base, get_db
 from utils.schemas import UserCreate, Token
 from models.dbhelpers import create_user, get_user_by_username
-from utils.auth import verify_password, create_access_token
+from utils.auth import verify_password, create_access_token,get_current_user_by_token
 from crewai import Crew, Process
 from utils.agents import Agents
 from utils.tasks import Tasks
@@ -54,7 +54,8 @@ async def signup(response: Response, username: str = Form(...), password: str = 
     data = create_user(db=db, user=user_create)
     access_token = create_access_token(data={"sub": data.username})
     response.set_cookie(key="access_token", value=access_token)
-    return {"access_token": access_token, "token_type": "bearer"}
+    response.set_cookie(key="user_name", value=data.username)
+    return {"access_token": access_token, "token_type": "bearer","user_name": data.username}
 
 @router.post("/token", response_model=Token)
 async def login_for_access_token(response: Response, form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
@@ -67,12 +68,16 @@ async def login_for_access_token(response: Response, form_data: OAuth2PasswordRe
         )
     access_token = create_access_token(data={"sub": user.username})
     response.set_cookie(key="access_token", value=access_token)
-    return {"access_token": access_token, "token_type": "bearer"}
+    response.set_cookie(key="user_name", value=user.username)
+    return {"access_token": access_token, "token_type": "bearer","user_name": user.username}
 
+@router.get("/get_current_user")
+async def get_current_user(response: Response,token: str,db: Session = Depends(get_db)):
+    current_user = get_current_user_by_token(db,token)
+    return current_user
 
 @router.get("/user_selection", response_class=HTMLResponse)
 async def user_selection(request: Request):
-    
     return templates.TemplateResponse("user_selection.html", { "request" : request,"message":"" })
 
 

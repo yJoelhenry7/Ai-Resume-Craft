@@ -43,6 +43,7 @@
                 if (response.ok) {
                     const responseData = await response.json();
                     alert('Signup successful!'); 
+                    window.location.href = '/';
                 } else {
                     const errorData = await response.json();
                     alert(`Signup failed! ${errorData.detail}`);

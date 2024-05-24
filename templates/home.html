@@ -12,7 +12,7 @@
             <h1>Please Login to Access the App</h1>
         </div>
         <div class="container-home-div" id="user-selection-div" style="display: none;">
-            <h1>Welcome </h1>
+            <h1>Welcome <span id="user-name">User</span> </h1>
             <a href="/user_selection"><button>Link to User Selection</button></a>
         </div>
         <div id="login-div">
@@ -41,11 +41,15 @@
      
         document.addEventListener("DOMContentLoaded", function() {
             const token = getCookie('access_token');
+            const name = getCookie('user_name');
             if (token) {
                 document.getElementById('user-selection-div').style.display = 'block';
                 document.getElementById('logout-div').style.display = 'block';
                 document.getElementById('user-login-title-div').style.display = 'none';
                 document.getElementById('login-div').style.display = 'none';
+            }
+            if(name){
+                document.getElementById('user-name').innerHTML = name;
             }
         });
   
