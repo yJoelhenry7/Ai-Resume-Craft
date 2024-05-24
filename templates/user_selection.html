@@ -34,7 +34,8 @@
     {% else %}
         <pre> {{message}}</pre>
     {% endif %}
+    
     <!-- script tag for script.js -->
-    <script src="/static/js/script.js"></script>
+    <script src="{{ url_for('static', path='js/script.js') }}"></script>
 </body>
 </html>

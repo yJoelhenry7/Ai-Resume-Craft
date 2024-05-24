@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <!-- link to css file -->
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">     
+        <form id="signin-form">
+            <h1>Sign In</h1>   
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="{{ url_for('static', path='js/script.js') }}"></script>
+    <script>
+        // Function to handle form submission
+        async function handleSignIn(event) {
+            event.preventDefault(); 
+
+            const form = event.target;
+            const formData = new FormData(form); 
+
+            try {
+                const response = await fetch('/token', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const responseData = await response.json();
+                    alert('Login successful!'); 
+                    window.location.href = '/';
+                } else {
+                    alert('Login failed! Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        }
+
+        // Add event listener to the form for submit event
+        const signinForm = document.getElementById('signin-form');
+        signinForm.addEventListener('submit', handleSignIn);
+    </script>
+</body>
+</html>
