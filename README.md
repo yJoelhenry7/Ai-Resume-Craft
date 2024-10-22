@@ -1,15 +1,14 @@
 ---
 
-# Crew AI Demo Web-App
+# AIResumeCraft
 
-This is a Demo Web-App for OC training
 
 ## Installation
 
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/Oc-training/crew-ai-webapp
+   git clone https://github.com/Ai-Resume-Craft
    ```
 
 2. Navigate into the project directory:
